@@ -8,7 +8,7 @@
   "module": "./build/ros3d.esm.js",
   "dependencies": {
     "eventemitter3": "^5.0.1",
-    "roslib": "workspace:*",
+    "roslib": "git+ssh://git@github.com/HitechMVP/roslibjs.git#patch&path:packages/roslib",
     "three": "^0.89.0"
   },
   "devDependencies": {
