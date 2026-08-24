@@ -53837,7 +53837,8 @@ InteractiveMarkerClient.prototype.subscribe = function subscribe (topic) {
     name : topic + '/tunneled/get_init',
     serviceType : 'demo_interactive_markers/GetInit'
   });
-  var request = new ROSLIB__namespace.ServiceRequest({});
+  // var request = new ROSLIB.ServiceRequest({});
+  var request = {};
   this.initService.callService(request, this.processInit.bind(this));
 };
 /**
@@ -56424,7 +56425,7 @@ var Urdf = /*@__PURE__*/(function (superclass) {
             var color = visual.material && visual.material.color;
             colorMaterial = makeColorMaterial(color.r, color.g, color.b, color.a);
           }
-          if (visual.geometry.type === ROSLIB__namespace.URDF_MESH) {
+          if (visual.geometry.type === ROSLIB__namespace.UrdfType.MESH) {
             var uri = visual.geometry.filename;
             // strips package://
             var tmpIndex = uri.indexOf('package://');
@@ -56487,19 +56488,19 @@ var Urdf = /*@__PURE__*/(function (superclass) {
     var shapeMesh;
     // Create a shape
     switch (visual.geometry.type) {
-      case ROSLIB__namespace.URDF_BOX:
+      case ROSLIB__namespace.UrdfType.BOX:
         var dimension = visual.geometry.dimension;
         var cube = new THREE.BoxGeometry(dimension.x, dimension.y, dimension.z);
         shapeMesh = new THREE.Mesh(cube, colorMaterial);
         break;
-      case ROSLIB__namespace.URDF_CYLINDER:
+      case ROSLIB__namespace.UrdfType.CYLINDER:
         var radius = visual.geometry.radius;
         var length = visual.geometry.length;
         var cylinder = new THREE.CylinderGeometry(radius, radius, length, 16, 1, false);
         shapeMesh = new THREE.Mesh(cylinder, colorMaterial);
         shapeMesh.quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI * 0.5);
         break;
-      case ROSLIB__namespace.URDF_SPHERE:
+      case ROSLIB__namespace.UrdfType.SPHERE:
         var sphere = new THREE.SphereGeometry(visual.geometry.radius, 16);
         shapeMesh = new THREE.Mesh(sphere, colorMaterial);
         break;
