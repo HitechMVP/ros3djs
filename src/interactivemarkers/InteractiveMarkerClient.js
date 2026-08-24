@@ -70,7 +70,8 @@ ROS3D.InteractiveMarkerClient.prototype.subscribe = function(topic) {
     name : topic + '/tunneled/get_init',
     serviceType : 'demo_interactive_markers/GetInit'
   });
-  var request = new ROSLIB.ServiceRequest({});
+  // var request = new ROSLIB.ServiceRequest({});
+  const request = {}
   this.initService.callService(request, this.processInit.bind(this));
 };
 

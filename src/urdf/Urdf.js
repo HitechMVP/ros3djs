@@ -41,7 +41,7 @@ ROS3D.Urdf = function(options) {
           var color = visual.material && visual.material.color;
           colorMaterial = ROS3D.makeColorMaterial(color.r, color.g, color.b, color.a);
         }
-        if (visual.geometry.type === ROSLIB.URDF_MESH) {
+        if (visual.geometry.type === ROSLIB.UrdfType.MESH) {
           var uri = visual.geometry.filename;
           // strips package://
           var tmpIndex = uri.indexOf('package://');
@@ -101,19 +101,19 @@ ROS3D.Urdf.prototype.createShapeMesh = function(visual, options) {
   var shapeMesh;
   // Create a shape
   switch (visual.geometry.type) {
-    case ROSLIB.URDF_BOX:
+    case ROSLIB.UrdfType.BOX:
       var dimension = visual.geometry.dimension;
       var cube = new THREE.BoxGeometry(dimension.x, dimension.y, dimension.z);
       shapeMesh = new THREE.Mesh(cube, colorMaterial);
       break;
-    case ROSLIB.URDF_CYLINDER:
+    case ROSLIB.UrdfType.CYLINDER:
       var radius = visual.geometry.radius;
       var length = visual.geometry.length;
       var cylinder = new THREE.CylinderGeometry(radius, radius, length, 16, 1, false);
       shapeMesh = new THREE.Mesh(cylinder, colorMaterial);
       shapeMesh.quaternion.setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI * 0.5);
       break;
-    case ROSLIB.URDF_SPHERE:
+    case ROSLIB.UrdfType.SPHERE:
       var sphere = new THREE.SphereGeometry(visual.geometry.radius, 16);
       shapeMesh = new THREE.Mesh(sphere, colorMaterial);
       break;
