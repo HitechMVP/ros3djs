@@ -135,7 +135,9 @@ ROS3D.Viewer.prototype.draw = function(){
   // set the scene
   this.renderer.clear(true, true, true);
   this.renderer.render(this.scene, this.camera);
-  this.highlighter.renderHighlights(this.scene, this.renderer, this.camera);
+
+  //fix IOS highlight
+  // this.highlighter.renderHighlights(this.scene, this.renderer, this.camera);
 
   // draw the frame
   this.animationRequestId = requestAnimationFrame(this.draw.bind(this));
